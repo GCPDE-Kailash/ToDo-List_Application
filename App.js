@@ -1,11 +1,8 @@
 //Document is the DOM can be accessed in the console with document.window.
 // Tree is from the top, html, body, p etc.
-
 //Problem: User interaction does not provide the correct results.
 //Solution: Add interactivity so the user can manage daily tasks.
 //Break things down into smaller steps and take each step at a time.
-
-
 //Event handling, uder interaction is what starts the code execution.
 
 var taskInput=document.getElementById("new-task");//Add a new task.
@@ -55,7 +52,6 @@ var addTask=function(){
 	//Append listItem to incompleteTaskHolder
 	incompleteTaskHolder.appendChild(listItem);
 	bindTaskEvents(listItem, taskCompleted);
-
 	taskInput.value="";
 }
 //Edit an existing task.
@@ -68,11 +64,10 @@ var editTask=function(){
 	var containsClass=listItem.classList.contains("editMode");
 	//If class of the parent is .editmode
 	if(containsClass){
-
 	//switch to .editmode
 	//label becomes the inputs value.
 		label.innerText=editInput.value;
-	}else{
+	} else {
 		editInput.value=label.innerText;
 	}
 	//toggle .editmode on the parent.
@@ -82,12 +77,10 @@ var editTask=function(){
 //Delete task.
 var deleteTask=function(){
 	console.log("Delete Task...");
-
 	var listItem=this.parentNode;
 	var ul=listItem.parentNode;
 	//Remove the parent list item from the ul.
 	ul.removeChild(listItem);
-
 }
 //Mark task completed
 var taskCompleted=function(){
@@ -111,7 +104,6 @@ var taskIncomplete=function(){
 var ajaxRequest=function(){
       console.log("AJAX Request");
 }
-
 	//The glue to hold it all together.
 	//Set the click handler to the addTask function.
 	addButton.onclick=addTask;
@@ -120,7 +112,7 @@ var ajaxRequest=function(){
 
 var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
 	console.log("bind list item events");
-//select ListItems children
+        //select ListItems children
 	var checkBox=taskListItem.querySelector("input[type=checkbox]");
 	var editButton=taskListItem.querySelector("button.edit");
 	var deleteButton=taskListItem.querySelector("button.delete");
@@ -132,8 +124,7 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
 	//Bind taskCompleted to checkBoxEventHandler.
 	checkBox.onchange=checkBoxEventHandler;
 }
-
-//cycle over incompleteTaskHolder ul list items
+         //cycle over incompleteTaskHolder ul list items
 	//for each list item
 	for (var i=0; i<incompleteTaskHolder.children.length;i++){
 
@@ -141,14 +132,14 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
 	bindTaskEvents(incompleteTaskHolder.children[i],taskCompleted);
 }
 
-//cycle over completedTasksHolder ul list items
+        //cycle over completedTasksHolder ul list items
 	for (var i=0; i<completedTasksHolder.children.length;i++){
 	//bind events to list items chldren(tasksIncompleted)
 	bindTaskEvents(completedTasksHolder.children[i],taskIncomplete);
-	}
-// Issues with usabiliy don't get seen until they are in front of a human tester.
-//prevent creation of empty tasks.
-//Shange edit to save when you are in edit mode.
+}
+	// Issues with usabiliy don't get seen until they are in front of a human tester.
+	//prevent creation of empty tasks.
+	//Shange edit to save when you are in edit mode.
 
 
 
